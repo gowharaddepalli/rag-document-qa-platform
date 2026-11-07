@@ -1,0 +1,108 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Document Insight Hub — "archival ledger" design system.
+ * Warm paper, deep ink-green, brass highlight. Serif display + Plex sans/mono. */
+
+@theme inline {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.975 0.012 85);
+  --foreground: oklch(0.22 0.03 160);
+  --card: oklch(0.99 0.008 85);
+  --card-foreground: oklch(0.22 0.03 160);
+  --popover: oklch(0.99 0.008 85);
+  --popover-foreground: oklch(0.22 0.03 160);
+  --primary: oklch(0.36 0.07 160);
+  --primary-foreground: oklch(0.97 0.015 85);
+  --secondary: oklch(0.93 0.02 85);
+  --secondary-foreground: oklch(0.26 0.04 160);
+  --muted: oklch(0.94 0.015 85);
+  --muted-foreground: oklch(0.48 0.03 150);
+  --accent: oklch(0.8 0.12 78);
+  --accent-foreground: oklch(0.25 0.04 60);
+  --destructive: oklch(0.55 0.19 28);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --success: oklch(0.55 0.12 150);
+  --warning: oklch(0.88 0.1 85);
+  --warning-foreground: oklch(0.35 0.07 60);
+  --ink: oklch(0.2 0.035 162);
+  --ink-foreground: oklch(0.95 0.02 85);
+  --border: oklch(0.87 0.02 85);
+  --input: oklch(0.87 0.02 85);
+  --ring: oklch(0.55 0.08 160);
+  --sidebar: oklch(0.2 0.035 162);
+  --sidebar-foreground: oklch(0.92 0.02 85);
+  --sidebar-primary: oklch(0.8 0.12 78);
+  --sidebar-primary-foreground: oklch(0.2 0.035 162);
+  --sidebar-accent: oklch(0.27 0.04 162);
+  --sidebar-accent-foreground: oklch(0.95 0.02 85);
+  --sidebar-border: oklch(0.3 0.03 162);
+  --sidebar-ring: oklch(0.8 0.12 78);
+  --shadow-paper: 0 1px 0 oklch(0.87 0.02 85), 0 12px 30px -18px oklch(0.2 0.035 162 / 0.35);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image: radial-gradient(oklch(0.87 0.02 85 / 0.5) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@utility shadow-paper { box-shadow: var(--shadow-paper); }
+@utility font-display { font-family: var(--font-display); }
+
+@keyframes caret { 50% { opacity: 0; } }
+@utility streaming-caret {
+  &::after { content: "▍"; margin-left: 2px; animation: caret 1s steps(1) infinite; color: var(--color-primary); }
+}

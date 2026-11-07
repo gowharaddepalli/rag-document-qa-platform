@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: [mongo-data:/data/db]
+
+  rag:
+    build: ./rag-service
+    env_file: ./rag-service/.env
+    environment:
+      INDEX_DIR: /app/data/indexes
+    volumes: [rag-data:/app/data]
+    ports: ["8000:8000"]
+
+  api:
+    build: ./server
+    env_file: ./server/.env
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/document_insight_hub
+      RAG_SERVICE_URL: http://rag:8000
+      UPLOAD_DIR: /app/uploads
+    volumes: [uploads:/app/uploads]
+    ports: ["4000:4000"]
+    depends_on: [mongo, rag]
+
+volumes:
+  mongo-data:
+  rag-data:
+  uploads:
